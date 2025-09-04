@@ -9,6 +9,61 @@ const loadLessons = () => {
     .then((result) => displayLesson(result.data));
 };
 
+const loadLevelWords = (levelNumber) => {
+  const endpoint = url + `/level/${levelNumber}`;
+
+  fetch(endpoint)
+    .then((response) => response.json())
+    .then((result) => displayWords(result.data));
+};
+
+const displayWords = (wordObjects) => {
+  const wordContainer = document.getElementById("word-container");
+  wordContainer.innerHTML = "";
+
+  const wordContainerCardsDiv = document.createElement("div");
+  wordContainerCardsDiv.className =
+    "grid sm:grid-cols-2 lg:grid-cols-3 gap-5 p-5";
+
+  wordContainer.appendChild(wordContainerCardsDiv);
+
+  wordObjects.forEach((wordObject) => {
+    const newCardDiv = document.createElement("div");
+    newCardDiv.innerHTML = `
+            <div class="h-full bg-white text-center p-5 sm:p-8 md:p-12 lg:p-10 xl:p-12 2xl:p-14 rounded-xl">
+              <h3 
+                class="font-poppins text-xl sm:text-lg md:text-2xl lg:text-xl xl:text-3xl 2xl:text-[2rem] font-bold text-black mb-6"
+              >
+                ${wordObject.word}
+              </h3>
+              <h4 
+                class="font-poppins text-sm md:text-base xl:text-lg 2xl:text-xl font-medium text-black mb-6"
+              >
+                Meaning /Pronounciation
+              </h4>
+              <h3
+                class="font-hind-siliguri text-xl sm:text-lg md:text-2xl lg:text-xl xl:text-3xl 2xl:text-[2rem] font-semibold text-[#18181B] mb-14"
+              >
+                ${wordObject.meaning}
+              </h3>
+              <div class="flex justify-between">
+                <button 
+                  class="lg:text-xl xl:text-2xl bg-[#1a91ff1a] p-4 rounded-lg cursor-pointer hover:bg-[#1a91ffcc] active:bg-[#1a91ffcc] active:scale-95"
+                >
+                  <i class="fa-solid fa-circle-info"></i>
+                </button>
+                <button 
+                  class="lg:text-xl xl:text-2xl bg-[#1a91ff1a] p-4 rounded-lg cursor-pointer hover:bg-[#1a91ffcc] active:bg-[#1a91ffcc] active:scale-95"
+                >
+                  <i class="fa-solid fa-volume-high"></i>
+                </button>
+              </div>
+            </div>
+`;
+    wordContainerCardsDiv.appendChild(newCardDiv);
+  });
+};
+
 const displayLesson = (lessons) => {
   const lvlButtonContainer = document.getElementById("lvl-btn-container");
   lvlButtonContainer.innerHTML = "";
@@ -21,6 +76,10 @@ const displayLesson = (lessons) => {
             <span><i class="fa-solid fa-book-open"></i></span>
             Lesson-${lesson.level_no}
 `;
+
+    newButton.addEventListener("click", () => {
+      loadLevelWords(lesson.level_no);
+    });
 
     lvlButtonContainer.appendChild(newButton);
   }
