@@ -47,7 +47,7 @@ const displayWords = (wordObjects) => {
               <h3 
                 class="font-poppins text-xl sm:text-lg md:text-2xl lg:text-xl xl:text-3xl 2xl:text-[2rem] font-bold text-black mb-6"
               >
-                ${wordObject.word}
+                ${wordObject.word ? wordObject.word : "Missing Word"}
               </h3>
               <h4 
                 class="font-poppins text-sm md:text-base xl:text-lg 2xl:text-xl font-medium text-black mb-6"
@@ -57,7 +57,7 @@ const displayWords = (wordObjects) => {
               <h3
                 class="font-hind-siliguri text-xl sm:text-lg md:text-2xl lg:text-xl xl:text-3xl 2xl:text-[2rem] font-semibold text-[#18181B] mb-14"
               >
-                ${wordObject.meaning} / ${wordObject.pronunciation}
+                ${wordObject.meaning ? wordObject.meaning : "অর্থ পাওয়া যায়নি"} / ${wordObject.pronunciation ? wordObject.pronunciation : "উচ্চারণ পাওয়া যায়নি"}
               </h3>
               <div class="flex justify-between">
                 <button 
