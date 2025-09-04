@@ -57,7 +57,7 @@ const displayWords = (wordObjects) => {
               <h3
                 class="font-hind-siliguri text-xl sm:text-lg md:text-2xl lg:text-xl xl:text-3xl 2xl:text-[2rem] font-semibold text-[#18181B] mb-14"
               >
-                ${wordObject.meaning}
+                ${wordObject.meaning} / ${wordObject.pronunciation}
               </h3>
               <div class="flex justify-between">
                 <button 
