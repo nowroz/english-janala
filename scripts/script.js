@@ -21,12 +21,6 @@ const displayWords = (wordObjects) => {
   const wordContainer = document.getElementById("word-container");
   wordContainer.innerHTML = "";
 
-  const wordContainerCardsDiv = document.createElement("div");
-  wordContainerCardsDiv.className =
-    "grid sm:grid-cols-2 lg:grid-cols-3 gap-5 p-5";
-
-  wordContainer.appendChild(wordContainerCardsDiv);
-
   wordObjects.forEach((wordObject) => {
     const newCardDiv = document.createElement("div");
     newCardDiv.innerHTML = `
@@ -60,7 +54,7 @@ const displayWords = (wordObjects) => {
               </div>
             </div>
 `;
-    wordContainerCardsDiv.appendChild(newCardDiv);
+    wordContainer.appendChild(newCardDiv);
   });
 };
 
