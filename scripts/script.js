@@ -16,7 +16,7 @@ const displayLesson = (lessons) => {
   for (const lesson of lessons) {
     const newButton = document.createElement("button");
     newButton.className =
-      "font-poppins text-sm font-semibold text-[#422AD5] border border-[#422AD5] rounded px-3 py-2 hover:text-white hover:bg-[#422AD5] cursor-pointer";
+      "font-poppins text-sm font-semibold text-[#422AD5] border border-[#422AD5] rounded px-3 py-2 hover:text-white hover:bg-[#422AD5] cursor-pointer active:bg-[#422AD5] active:scale-95 active:text-white";
     newButton.innerHTML = `
             <span><i class="fa-solid fa-book-open"></i></span>
             Lesson-${lesson.level_no}
