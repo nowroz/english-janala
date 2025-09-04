@@ -21,6 +21,25 @@ const displayWords = (wordObjects) => {
   const wordContainer = document.getElementById("word-container");
   wordContainer.innerHTML = "";
 
+  if (wordObjects.length === 0) {
+    wordContainer.innerHTML = `
+          <div class="col-span-full py-16 text-center">
+            <img src="./assets/alert-error.png" alt="" class="w-16 sm:w-max h-auto mx-auto mb-4" />
+            <h6
+              class="font-hind-siliguri text-xs sm:text-sm font-normal text-[#79716B] mb-3"
+            >
+              এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।
+            </h6>
+            <h3
+              class="font-hind-siliguri text-2xl sm:text-4xl font-medium text-[#292524]"
+            >
+              নেক্সট Lesson এ যান
+            </h3>
+          </div>
+`;
+
+    return;
+  }
   wordObjects.forEach((wordObject) => {
     const newCardDiv = document.createElement("div");
     newCardDiv.innerHTML = `
