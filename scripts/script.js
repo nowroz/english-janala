@@ -9,6 +9,45 @@ const loadLessons = () => {
     .then((result) => displayLesson(result.data));
 };
 
+const displayLesson = (lessons) => {
+  const lvlButtonContainer = document.getElementById("lvl-btn-container");
+  lvlButtonContainer.innerHTML = "";
+
+  for (const lesson of lessons) {
+    const newButton = document.createElement("button");
+
+    newButton.id = `toggle-btn-${lesson.id}`;
+
+    newButton.className =
+      "toggle-btn font-poppins text-sm font-semibold text-[#422AD5] border border-[#422AD5] rounded px-3 py-2 hover:text-white hover:bg-[#422AD5] cursor-pointer active:bg-[#422AD5] active:scale-95 active:text-white";
+    newButton.innerHTML = `
+            <span><i class="fa-solid fa-book-open"></i></span>
+            Lesson-${lesson.level_no}
+`;
+
+    newButton.addEventListener("click", () => {
+      toggleButtons(newButton.id);
+      loadLevelWords(lesson.level_no);
+    });
+
+    lvlButtonContainer.appendChild(newButton);
+  }
+};
+
+const toggleButtons = (activeButtonId) => {
+  const toggleButtonsCollection = document.getElementsByClassName("toggle-btn");
+
+  for (const toggleButton of toggleButtonsCollection) {
+    if (toggleButton.id === activeButtonId) {
+      toggleButton.classList.replace("text-[#422AD5]", "text-white");
+      toggleButton.classList.add("bg-[#422AD5]");
+    } else {
+      toggleButton.classList.replace("text-white", "text-[#422AD5]");
+      toggleButton.classList.remove("bg-[#422AD5]");
+    }
+  }
+};
+
 const loadLevelWords = (levelNumber) => {
   const endpoint = url + `/level/${levelNumber}`;
 
@@ -75,27 +114,6 @@ const displayWords = (wordObjects) => {
 `;
     wordContainer.appendChild(newCardDiv);
   });
-};
-
-const displayLesson = (lessons) => {
-  const lvlButtonContainer = document.getElementById("lvl-btn-container");
-  lvlButtonContainer.innerHTML = "";
-
-  for (const lesson of lessons) {
-    const newButton = document.createElement("button");
-    newButton.className =
-      "font-poppins text-sm font-semibold text-[#422AD5] border border-[#422AD5] rounded px-3 py-2 hover:text-white hover:bg-[#422AD5] cursor-pointer active:bg-[#422AD5] active:scale-95 active:text-white";
-    newButton.innerHTML = `
-            <span><i class="fa-solid fa-book-open"></i></span>
-            Lesson-${lesson.level_no}
-`;
-
-    newButton.addEventListener("click", () => {
-      loadLevelWords(lesson.level_no);
-    });
-
-    lvlButtonContainer.appendChild(newButton);
-  }
 };
 
 loadLessons();
