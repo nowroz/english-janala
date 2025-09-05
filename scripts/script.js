@@ -243,3 +243,22 @@ const addCloseDialogButtonListener = () => {
 loadLessons();
 
 addCloseDialogButtonListener();
+
+document.getElementById("btn-search").addEventListener("click", () => {
+  let searchValue = document.getElementById("search-bar").value;
+
+  searchValue = searchValue.trim().toLowerCase();
+
+  const endpoint = url + "/words/all";
+
+  fetch(endpoint)
+    .then((response) => response.json())
+    .then((result) => {
+      wordObjects = result.data.filter((wordObject) =>
+        wordObject.word.toLowerCase().includes(searchValue),
+      );
+
+      toggleButtons();
+      displayWords(wordObjects);
+    });
+});
