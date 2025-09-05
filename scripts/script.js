@@ -134,6 +134,7 @@ const displayWords = (wordObjects) => {
                   <i class="fa-solid fa-circle-info"></i>
                 </button>
                 <button 
+                  id="btn-pronounce-word-${wordObject.id}"
                   class="lg:text-xl xl:text-2xl bg-[#1a91ff1a] p-4 rounded-lg cursor-pointer hover:bg-[#1a91ffcc] active:bg-[#1a91ffcc] active:scale-95"
                 >
                   <i class="fa-solid fa-volume-high"></i>
@@ -143,6 +144,7 @@ const displayWords = (wordObjects) => {
 `;
     wordContainer.appendChild(newCardDiv);
     attachWordInfoListener(wordObject.id);
+    attachPronounceWordListener(wordObject.id, wordObject.word);
   });
 };
 
@@ -231,6 +233,24 @@ const populateSynonyms = (wordObject) => {
 
     synonymsContainer.appendChild(newSynonymH5);
   });
+};
+
+const attachPronounceWordListener = (wordId, word) => {
+  const btnPronounceWord = document.getElementById(
+    `btn-pronounce-word-${wordId}`,
+  );
+
+  btnPronounceWord.addEventListener("click", () => {
+    pronounceWord(word);
+  });
+};
+
+const pronounceWord = (word) => {
+  const utterance = new SpeechSynthesisUtterance(word);
+
+  utterance.lang = "en-US";
+
+  window.speechSynthesis.speak(utterance);
 };
 
 const addCloseDialogButtonListener = () => {
