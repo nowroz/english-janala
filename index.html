@@ -173,7 +173,10 @@
           id="word-container"
           class="bg-[#F8F8F8] rounded-3xl grid sm:grid-cols-2 lg:grid-cols-3 gap-5 p-5"
         >
-          <div class="col-span-full py-16 text-center">
+          <div
+            id="placeholder-default-content"
+            class="col-span-full py-16 text-center"
+          >
             <h6
               class="font-hind-siliguri text-sm font-normal text-[#79716B] mb-3"
             >
@@ -185,6 +188,10 @@
               একটি Lesson Select করুন।
             </h3>
           </div>
+          <span
+            id="placeholder-loading-bars"
+            class="hidden col-span-full py-16 justify-self-center loading loading-bars loading-xl"
+          ></span>
         </div>
 
         <!-- word info modal -->

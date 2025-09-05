@@ -2,6 +2,33 @@ console.log("'script.js' is connected");
 
 const url = "https://openapi.programming-hero.com/api";
 
+const showLoadingBars = () => {
+  const placeholderLoadingBars = document.getElementById(
+    "placeholder-loading-bars",
+  );
+
+  if (!!placeholderLoadingBars === false) {
+    const wordContainer = document.getElementById("word-container");
+    wordContainer.innerHTML = "";
+
+    const newPlaceholderLoadingBars = document.createElement("span");
+
+    newPlaceholderLoadingBars.className =
+      "col-span-full py-16 justify-self-center loading loading-bars loading-xl";
+
+    wordContainer.appendChild(newPlaceholderLoadingBars);
+
+    return;
+  }
+
+  const placeholderDefaultContent = document.getElementById(
+    "placeholder-default-content",
+  );
+
+  placeholderDefaultContent.classList.add("hidden");
+  placeholderLoadingBars.classList.replace("hidden", "block");
+};
+
 const loadLessons = () => {
   const endpoint = url + "/levels/all";
   fetch(endpoint)
@@ -49,6 +76,7 @@ const toggleButtons = (activeButtonId) => {
 };
 
 const loadLevelWords = (levelNumber) => {
+  showLoadingBars();
   const endpoint = url + `/level/${levelNumber}`;
 
   fetch(endpoint)
