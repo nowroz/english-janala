@@ -159,21 +159,6 @@ const displayWordInfo = async (wordId) => {
               সমার্থক শব্দ গুলো
             </h4>
             <div id="synonyms-container" class="font-poppins text-xl font-normal text-black flex gap-4">
-              <h5
-                class="px-5 py-1 bg-[#EDF7FF] border border-[#D7E4EF] rounded-md"
-              >
-                Enthusiastic
-              </h5>
-              <h5
-                class="px-5 py-1 bg-[#EDF7FF] border border-[#D7E4EF] rounded-md"
-              >
-                excited
-              </h5>
-              <h5
-                class="px-5 py-1 bg-[#EDF7FF] border border-[#D7E4EF] rounded-md"
-              >
-                keen
-              </h5>
             </div>
 `;
 
