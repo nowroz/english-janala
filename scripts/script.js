@@ -136,29 +136,29 @@ const displayWordInfo = async (wordId) => {
   wordInfoContainer.innerHTML = "";
 
   wordInfoContainer.innerHTML = `
-            <h2 class="font-poppins text-3xl font-semibold text-black mb-8">
+            <h2 class="font-poppins text-lg lg:text-2xl 2xl:text-3xl font-semibold text-black mb-5 2xl:mb-8">
               ${wordObject.word} (<span><i class="fa-solid fa-microphone-lines"></i></span>:
               ${wordObject.pronunciation})
             </h2>
 
-            <h4 class="font-poppins text-2xl font-semibold text-black mb-2">
+            <h4 class="font-poppins text-sm sm:text-base lg:text-lg 2xl:text-2xl font-semibold text-black mb-1 2xl:mb-2">
               Meaning
             </h4>
-            <p class="font-hind-siliguri text-2xl font-medium text-black mb-8">
+            <p class="font-hind-siliguri text-sm sm:text-base lg:text-lg 2xl:text-2xl font-medium text-black mb-5 2xl:mb-8">
               ${wordObject.meaning}
             </p>
 
-            <h4 class="font-poppins text-2xl font-semibold text-black mb-2">
+            <h4 class="font-poppins text-sm sm:text-base lg:text-lg 2xl:text-2xl font-semibold text-black mb-1 2xl:mb-2">
               Example
             </h4>
-            <p class="font-poppins text-2xl font-normal text-black mb-8">
+            <p class="font-poppins text-sm sm:text-base lg:text-lg 2xl:text-2xl font-normal text-black mb-5 2xl:mb-8">
               ${wordObject.sentence}
             </p>
 
-            <h4 class="font-hind-siliguri text-2xl font-medium text-black mb-2">
+            <h4 class="font-hind-siliguri text-sm sm:text-base lg:text-lg 2xl:text-2xl font-medium text-black mb-1 2xl:mb-2">
               সমার্থক শব্দ গুলো
             </h4>
-            <div id="synonyms-container" class="font-poppins text-xl font-normal text-black flex gap-4">
+            <div id="synonyms-container" class="font-poppins text-xs sm:text-sm lg:text-base 2xl:text-xl font-normal text-black whitespace-nowrap flex flex-wrap gap-2 sm:gap-4">
             </div>
 `;
 
@@ -189,7 +189,7 @@ const populateSynonyms = (wordObject) => {
   wordObject.synonyms.forEach((synonym) => {
     const newSynonymH5 = document.createElement("h5");
     newSynonymH5.className =
-      "px-5 py-1 bg-[#EDF7FF] border border-[#D7E4EF] rounded-md";
+      "px-3 lg:px-5 py-1 bg-[#EDF7FF] border border-[#D7E4EF] rounded-md";
 
     newSynonymH5.innerText = synonym;
 
