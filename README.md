@@ -3,6 +3,7 @@
 [English Janala - GitHub](https://nowroz.github.io/english-janala)
 [English Janala - Netlify](https://english-janala-nowroz.netlify.app)
 [English Janala - Cloudflare](https://english-janala-nowroz.pages.dev)
+[English Janala - Surge](https://english-janala-nowroz.surge.sh)
 
 ### Main Features
 
