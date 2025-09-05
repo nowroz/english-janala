@@ -173,7 +173,7 @@ const displayWordInfo = async (wordId) => {
               Meaning
             </h4>
             <p class="font-hind-siliguri text-sm sm:text-base lg:text-lg 2xl:text-2xl font-medium text-black mb-5 2xl:mb-8">
-              ${wordObject.meaning}
+              ${wordObject.meaning ? wordObject.meaning : "অর্থ পাওয়া যায়নি"}
             </p>
 
             <h4 class="font-poppins text-sm sm:text-base lg:text-lg 2xl:text-2xl font-semibold text-black mb-1 2xl:mb-2">
@@ -213,6 +213,14 @@ const fetchWord = async (wordId) => {
 const populateSynonyms = (wordObject) => {
   const synonymsContainer = document.getElementById("synonyms-container");
   synonymsContainer.innerHTML = "";
+
+  if (wordObject.synonyms.length === 0) {
+    const noSynonymFoundP = document.createElement("p");
+    noSynonymFoundP.innerHTML = "কোন সমার্থক শব্দ পাওয়া যায়নি";
+
+    synonymsContainer.appendChild(noSynonymFoundP);
+    return;
+  }
 
   wordObject.synonyms.forEach((synonym) => {
     const newSynonymH5 = document.createElement("h5");
