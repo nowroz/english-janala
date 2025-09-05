@@ -138,7 +138,7 @@ const displayWordInfo = async (wordId) => {
   wordInfoContainer.innerHTML = `
             <h2 class="font-poppins text-3xl font-semibold text-black mb-8">
               ${wordObject.word} (<span><i class="fa-solid fa-microphone-lines"></i></span>:
-              ইগার)
+              ${wordObject.pronunciation})
             </h2>
 
             <h4 class="font-poppins text-2xl font-semibold text-black mb-2">
