@@ -100,6 +100,7 @@ const displayWords = (wordObjects) => {
               </h3>
               <div class="flex justify-between">
                 <button 
+                  id="btn-word-info-${wordObject.id}"
                   class="lg:text-xl xl:text-2xl bg-[#1a91ff1a] p-4 rounded-lg cursor-pointer hover:bg-[#1a91ffcc] active:bg-[#1a91ffcc] active:scale-95"
                 >
                   <i class="fa-solid fa-circle-info"></i>
@@ -113,7 +114,111 @@ const displayWords = (wordObjects) => {
             </div>
 `;
     wordContainer.appendChild(newCardDiv);
+    attachWordInfoListener(wordObject.id);
+  });
+};
+
+const attachWordInfoListener = (wordId) => {
+  const btnWordInfo = document.getElementById(`btn-word-info-${wordId}`);
+
+  btnWordInfo.addEventListener("click", () => {
+    displayWordInfo(wordId);
+  });
+};
+
+const displayWordInfo = async (wordId) => {
+  const wordObject = await fetchWord(wordId);
+
+  const dialog = document.getElementById("dialog-word-info");
+
+  const wordInfoContainer = document.getElementById("word-info-container");
+
+  wordInfoContainer.innerHTML = "";
+
+  wordInfoContainer.innerHTML = `
+            <h2 class="font-poppins text-3xl font-semibold text-black mb-8">
+              ${wordObject.word} (<span><i class="fa-solid fa-microphone-lines"></i></span>:
+              ইগার)
+            </h2>
+
+            <h4 class="font-poppins text-2xl font-semibold text-black mb-2">
+              Meaning
+            </h4>
+            <p class="font-hind-siliguri text-2xl font-medium text-black mb-8">
+              ${wordObject.meaning}
+            </p>
+
+            <h4 class="font-poppins text-2xl font-semibold text-black mb-2">
+              Example
+            </h4>
+            <p class="font-poppins text-2xl font-normal text-black mb-8">
+              ${wordObject.sentence}
+            </p>
+
+            <h4 class="font-hind-siliguri text-2xl font-medium text-black mb-2">
+              সমার্থক শব্দ গুলো
+            </h4>
+            <div id="synonyms-container" class="font-poppins text-xl font-normal text-black flex gap-4">
+              <h5
+                class="px-5 py-1 bg-[#EDF7FF] border border-[#D7E4EF] rounded-md"
+              >
+                Enthusiastic
+              </h5>
+              <h5
+                class="px-5 py-1 bg-[#EDF7FF] border border-[#D7E4EF] rounded-md"
+              >
+                excited
+              </h5>
+              <h5
+                class="px-5 py-1 bg-[#EDF7FF] border border-[#D7E4EF] rounded-md"
+              >
+                keen
+              </h5>
+            </div>
+`;
+
+  populateSynonyms(wordObject);
+
+  dialog.showModal();
+};
+
+const fetchWord = async (wordId) => {
+  const endpoint = url + `/word/${wordId}`;
+
+  try {
+    const response = await fetch(endpoint);
+    const result = await response.json();
+
+    const wordObject = result.data;
+
+    return wordObject;
+  } catch (error) {
+    console.error("Fetching word error:", error);
+  }
+};
+
+const populateSynonyms = (wordObject) => {
+  const synonymsContainer = document.getElementById("synonyms-container");
+  synonymsContainer.innerHTML = "";
+
+  wordObject.synonyms.forEach((synonym) => {
+    const newSynonymH5 = document.createElement("h5");
+    newSynonymH5.className =
+      "px-5 py-1 bg-[#EDF7FF] border border-[#D7E4EF] rounded-md";
+
+    newSynonymH5.innerText = synonym;
+
+    synonymsContainer.appendChild(newSynonymH5);
+  });
+};
+
+const addCloseDialogButtonListener = () => {
+  document.getElementById("btn-close-dialog").addEventListener("click", () => {
+    const dialog = document.getElementById("dialog-word-info");
+    dialog.close();
   });
 };
 
 loadLessons();
+
+addCloseDialogButtonListener();
