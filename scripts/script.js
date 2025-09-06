@@ -2,6 +2,14 @@ console.log("'script.js' is connected");
 
 const url = "https://openapi.programming-hero.com/api";
 
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 0) {
+    navbar.classList.replace("bg-[#badeff42]", "bg-[#badeff]");
+  } else {
+    navbar.classList.replace("bg-[#badeff]", "bg-[#badeff42]");
+  }
+});
+
 const showLoadingBars = () => {
   const placeholderLoadingBars = document.getElementById(
     "placeholder-loading-bars",
