@@ -1,7 +1,5 @@
 ### Live Link
 
-[English Janala - GitHub](https://nowroz.github.io/english-janala)
-
 [English Janala - Netlify](https://english-janala-nowroz.netlify.app)
 
 [English Janala - Cloudflare](https://english-janala-nowroz.pages.dev)
